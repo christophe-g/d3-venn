@@ -13,7 +13,14 @@ One motivation is to display a set of labelled nodes on their respective set as 
 ## How does it work ?
 Venn sets are calculated on the basis of nodes set properties. Like this: 
 ```js
-var data = [{"set":["B"],"name":"set_0"},{"set":["C"],"name":"set_1"},{"set":["C"],"name":"set_2"},{"set":["B","A"],"name":"set_3"},{"set":["A"],"name":"set_4"},{"set":["B"],"name":"set_5"},{"set":["A"],"name":"set_6"}]
+var data = [
+    {"set":["B"],"name":"node_0"},
+    {"set":["C"],"name":"node_1"},
+    {"set":["C"],"name":"node_2"},
+    {"set":["B","A"],"name":"node_3"},
+    {"set":["A","C"],"name":"node_4"},
+    {"set":["B", "A"],"name":"node_5"},
+    {"set":["A"],"name":"node_6"}]
 ```
 And to compute the layout  : 
 ```js
