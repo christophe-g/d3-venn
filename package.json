@@ -1,0 +1,32 @@
+{
+  "name": "d3-venn",
+  "version": "0.0.8",
+  "description": "a Venn Layout plugin for d3.js",
+  "keywords": [
+    "d3",
+    "venn",
+    "layout"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/d3-venn.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/christophe-g/d3-venn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christophe-g/d3-venn.git"
+  },
+  "scripts": {
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-venn -n d3_venn -o build/d3-venn.js -- build/bundle.js && node -e 'process.stdout.write (\"var d3 = d3||{}; d3.layout = d3.layout || {}; d3.layout.venn = this.d3_venn && this.d3_venn.venn; delete this.d3_venn;\")' >> build/d3-venn.js",
+    "test": "faucet `find test -name '*-test.js'`",
+    "prepublish": "npm run test && uglifyjs build/d3-venn.js -c -m -o build/d3-venn.min.js && rm -f build/d3-venn.zip && zip -j build/d3-venn.zip -- LICENSE README.md build/d3-venn.js build/d3-venn.min.js"
+  },
+  "devDependencies": {
+    "faucet": "0.0",
+    "rollup": "0.20.5",
+    "tape": "4",
+    "uglify-js": "2"
+  },
+  "dependencies": {
+    "venn.js": "~0.2.4"
+  }
+}

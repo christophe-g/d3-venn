@@ -1,0 +1,3 @@
+[submodule "venn.js"]
+	path = venn.js
+	url = https://github.com/benfred/venn.js
