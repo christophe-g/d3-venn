@@ -45,9 +45,9 @@ By default, set area size are a count of nodes in the set.
 
 
 ## Examples
-- [simple example](http://bl.ocks.org/christophe-g/517461e67a2aae17dd10#index.html)
-- [interactive example](http://bl.ocks.org/christophe-g/2a491630dcc716fcb270#index.html)
-- [interactive, with area size as log of number of nodes](http://bl.ocks.org/christophe-g/c41f09c1c2bc71f10a20#index.html)
+- [simple example](http://bl.ocks.org/christophe-g/517461e67a2aae17dd10)
+- [interactive example](http://bl.ocks.org/christophe-g/2a491630dcc716fcb270)
+- [interactive, with area size as log of number of nodes](http://bl.ocks.org/christophe-g/c41f09c1c2bc71f10a20)
 
 ## Layout method and propeties 
 
@@ -72,7 +72,7 @@ Each node is populated with the following attributes:
 
 Returns and array of sets computed by the layout. 
 Each set has the folling properties: 
-- `center` - x,y key-value object representing the center of the set erea ([computed by venn.cmputeTextCenter](https://github.com/benfred/venn.js/blob/master/src/diagram.js#L369) ).
+- `center` - x,y key-value object representing the center of the set erea ([computed by venn.computeTextCenter](https://github.com/benfred/venn.js/blob/master/src/diagram.js#L369) ).
 - `innerRadius` - the radius of the inner circle.
 - `d` - attrTween function for the path of the set area.
 - `nodes` - array of nodes contained by this set.
@@ -148,7 +148,7 @@ When <i>setAccessor</i> is specified, defines the way sets are accessed for node
 
 <a name="setsSize" href="#setsSize">#</a> venn.<b>setsSize</b>([<i>setsSize</i>])
 
-When <i>setSize</i> is specified, defines the way area size are modulated. By default, area set size are a count of the number of nodes they contain [exmple of layout using log of set area size](http://bl.ocks.org/christophe-g/c41f09c1c2bc71f10a20#index.html). 
+When <i>setSize</i> is specified, defines the way area size are modulated. By default, area set size are a count of the number of nodes they contain [exmple of layout using log of set area size](http://bl.ocks.org/christophe-g/c41f09c1c2bc71f10a20). 
 If not specified, this method return the currnet `venn.setsSize` function.
 
 <a name="packCircleFunction" href="#packCircleFunction">#</a> venn.<b>packCircleFunction</b>([<i>packCircleFunction</i>])
@@ -176,7 +176,7 @@ Set normalize to `false` to prevent layout normalization.
 ### The layout also exports two functions for packing the nodes within their respective venn sets : 
 <a name="packCircles" href="#packCircles">#</a> venn.<b>packCircles</b>(<i>set</i>,<i>valueFunction</i>)
 
-This is the default algorithm 
+This is the default algorithm for packing circles.
 
 <a name="distributeCircles" href="#distributeCircles">#</a> venn.<b>distributeCircles</b>(<i>set</i>,<i>valueFunction</i>, <i>circles</i>)
 

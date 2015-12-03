@@ -41,7 +41,9 @@ export default function() {
 
     // Build simple getter and setter Functions
     for (var key in opts) {
-        venn[key] = getSet(key, venn).bind(opts);
+        if(!venn[key]) {
+            venn[key] = getSet(key, venn).bind(opts);
+        }
     }
 
     //The layout function
@@ -68,6 +70,11 @@ export default function() {
 
         sets = extractSets(data);
         solution = layout(sets);
+
+        console.info("data: ", data)
+        console.info("sets: ", sets)
+        
+
 
         if (venn.normalize()) {
             solution = normalizeSolution(solution, venn.orientation());
@@ -112,8 +119,6 @@ export default function() {
 
             }
             return candidate;
-            // set.innerRadius = distance;    
-            // }   
         }
 
         function checkOverlapp(sets, circle) {
