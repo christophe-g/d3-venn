@@ -9,7 +9,7 @@ It tries to be in line with [d3.layout approach and declaration](https://github.
 
 
 One possible use case of this layout is to display a set of labelled nodes on their respective set as in the figure below: 
-
+ 
 <div>
 <img src="https://www.e-smile.org/blog/resources/images/vennLayout.png" width="600">
 </div>
@@ -26,13 +26,8 @@ Basically, it takes nodes data of this form :
         {"set":["B","A"],"name":"node_3"}
         ]
 ```
-While computing the layout 
-```js
-var layout = d3.layout.venn().nodes(data);
 
-```
-
-it calculates venn sets like. By default, set size are a count of the nodes in the set: 
+and calculates Venn sets like : 
 ```js
  sets = [ 
         {sets: ['A'], size: 1, nodes : ['node_0']}, 
@@ -40,6 +35,13 @@ it calculates venn sets like. By default, set size are a count of the nodes in t
         {sets: ['A','B'], size: 2, nodes ['node_2', 'node_3']}
         ];
 ```    
+
+For calling and computing the layout : 
+```js
+var layout = d3.layout.venn().nodes(data);
+```
+
+By default, set area size are a count of nodes in the set.
 
 
 ## Examples
@@ -173,9 +175,11 @@ Set normalize to `false` to prevent layout normalization.
 
 ### The layout also exports two functions for packing the nodes within their respective venn sets : 
 <a name="packCircles" href="#packCircles">#</a> venn.<b>packCircles</b>(<i>set</i>,<i>valueFunction</i>)
+
 This is the default algorithm 
 
 <a name="distributeCircles" href="#distributeCircles">#</a> venn.<b>distributeCircles</b>(<i>set</i>,<i>valueFunction</i>, <i>circles</i>)
+
 Using random distribution to put nodes inside their area [see an example here](http://bl.ocks.org/christophe-g/7985cf90d79a23ca2996#index). 
 ```js
     var layout = d3.layout.venn().
