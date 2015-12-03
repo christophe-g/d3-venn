@@ -1,20 +1,30 @@
-import getSet from "./getSet";
+import {default as getSet} from "./getSet";
 import packCircles from "./packCircles";
 import distributeCircles from "./distributeCircles";
 // import distributeCircles from "./distributeCircles"; // as an alternative to packCircles
-import {venn as vennLayout, normalizeSolution, scaleSolution} from "../venn.js/src/layout.js";
-import {intersectionAreaPath, computeTextCentres} from "../venn.js/src/diagram.js"
-import {distance} from "../venn.js/src/circleintersection.js"
+import {
+    venn as vennLayout, normalizeSolution, scaleSolution
+}
+from "../venn.js/src/layout.js";
+import {
+    intersectionAreaPath, computeTextCentres
+}
+from "../venn.js/src/diagram.js"
+import {
+    distance
+}
+from "../venn.js/src/circleintersection.js"
 
 
 export default function() {
-// d3.layout.venn = function() {
+    // d3.layout.venn = function() {
 
     var opts = {
         sets: [],
         setsAccessor: setsAccessorFn,
-        packCircleFunction : packCircles,
-        value : valueFn,
+        setsSize : setsSize,
+        packCircleFunction: packCircles,
+        value: valueFn,
         size: [1, 1],
         padding: 15,
 
@@ -27,7 +37,7 @@ export default function() {
 
     var circles,
         centres;
-        
+
 
     // Build simple getter and setter Functions
     for (var key in opts) {
@@ -51,11 +61,11 @@ export default function() {
             // normalizeSolution = normalizeSolution,
             // scaleSolution = scaleSolution,
             // computeTextCentres = computeTextCentres,
-            
-            solution, 
+
+            solution,
             oldCircles;
 
-        
+
         sets = extractSets(data);
         solution = layout(sets);
 
@@ -67,12 +77,12 @@ export default function() {
         circles = scaleSolution(solution, width, height, venn.padding());
 
         for (var k in oldCircles) {
-            if(circles[k]) {
+            if (circles[k]) {
                 circles[k].previous = oldCircles[k];
             }
         }
         oldCircles = null;
- 
+
         centres = computeTextCentres(circles, sets);
 
         // store intersectionAreaPath into sets
@@ -102,14 +112,19 @@ export default function() {
 
             }
             return candidate;
-                // set.innerRadius = distance;    
-                // }   
+            // set.innerRadius = distance;    
+            // }   
         }
+
         function checkOverlapp(sets, circle) {
-            var i = 0, l = sets.length, c;
-            for(i; i < l; i++) {
+            var i = 0,
+                l = sets.length,
+                c;
+            for (i; i < l; i++) {
                 c = circles[sets[i]];
-                if(distance(c, circle) < c.radius) {return true;}
+                if (distance(c, circle) < c.radius) {
+                    return true;
+                }
             }
             return false;
         }
@@ -124,7 +139,7 @@ export default function() {
                     var start = circle && circle["previous"],
                         end = circle;
                     if (!start) {
-                        start =  {
+                        start = {
                             x: width / 2,
                             y: height / 2,
                             radius: 1
@@ -137,7 +152,7 @@ export default function() {
                             radius: 1
                         };
                     }
-                    if(t == 1 && circle) {
+                    if (t == 1 && circle) {
                         circle["previous"] = end;
                     }
                     return {
@@ -153,35 +168,50 @@ export default function() {
         return data
     }
 
-    // loop over data and build the set
+    // loop over data and build the set so that they comply with https://github.com/benfred/venn.js
+    /*
+    from  data = [
+        {"set":["A"],"name":"node_0"},
+        {"set":["B"],"name":"node_1"},
+        {"set":["B","A"],"name":"node_2"}
+        {"set":["B","A"],"name":"node_3"}
+        ]
+
+    to sets = [ 
+        {sets: ['A'], size: 1, nodes : ['node_0']}, 
+        {sets: ['B'], size: 1, nodes : ['node_1']},
+        {sets: ['A','B'], size: 2, nodes ['node_2', 'node_3']}
+        ];
+    */
     function extractSets(data) {
         var sets = d3.map({}, function(d) {
                 return d.__key__
             }),
             individualSets = d3.map(),
             accessor = venn.setsAccessor(),
+            size = venn.setsSize(),
             set,
             s,
             key,
             i,
-            n = data.length,
-            m;
+            n = data.length;
+
         for (i = -1; ++i < n;) {
             set = accessor(data[i]);
-            m = set.length;
-            if (m) {
-                key = set.sort().join(',');
+            if (set.length) {
+                key = set.sort().join(','); //so taht we have the same key as in https://github.com/benfred/venn.js
                 set.forEach(function(val) {
                     if (s = individualSets.get(val)) {
-                        s.size++;
-                        s.nodes.push([data[i]]);
+                        s.size += 1;
+                        // s.nodes.push([data[i]]);
 
                     } else {
                         individualSets.set(val, {
                             __key__: val,
                             size: 1,
                             sets: [val],
-                            nodes: [data[i]]
+                            nodes: []
+                            // nodes: [data[i]]
                         })
                     }
                 });
@@ -204,9 +234,18 @@ export default function() {
                 sets.set(k, v);
             }
         });
+        // reset the size for each set. 
+        sets.forEach(function(k,v) {
+            v.size = size(v.size);
+        })
         sets = sets.values();
+
         venn.sets(sets);
         return sets;
+    }
+
+    function setsSize(size) {
+        return size;
     }
 
     // data accessors 
@@ -231,4 +270,6 @@ export default function() {
     return venn;
     // return d3.rebind(venn, event, "on");
 };
-export {packCircles, distributeCircles};
+export {
+    packCircles, distributeCircles
+};
