@@ -6,7 +6,7 @@ from "./getSet.js";
 import {
   pack, distribute, force
 }
-from "./pack.js";
+from "./packStrategies.js";
 // import distributeCircles from "./distributeCircles";
 // import distributeCircles from "./distributeCircles"; // as an alternative to packCircles
 import {
@@ -27,7 +27,7 @@ export default function() {
   // d3.layout.venn = function() {
 
   var opts = {
-    sets: [],
+    sets: null,
     setsAccessor: setsAccessorFn,
     setsSize: setsSize,
     packingStragegy: pack,
@@ -64,6 +64,7 @@ export default function() {
 
   function compute(data) {
     var sets = venn.sets(),
+        setsValues,
       layout = venn.layoutFunction(),
       packingStragegy = venn.packingStragegy(),
       size = venn.size(),
@@ -78,7 +79,8 @@ export default function() {
 
 
     sets = extractSets(data);
-    solution = layout(sets);
+    setsValues = sets.values()
+    solution = layout(setsValues);
 
     console.info("data: ", data)
     console.info("sets: ", sets)
@@ -97,12 +99,12 @@ export default function() {
     }
     oldCircles = null;
 
-    centres = computeTextCentres(circles, sets);
+    centres = computeTextCentres(circles, setsValues);
 
     // store intersectionAreaPath into sets
-    sets.forEach(function(set) {
+    sets.forEach(function(k,set) {
       set.d = pathTween(set);
-      set.center = centres[set.__key__];
+      set.center = centres[k];
       set.innerRadius = computeDistanceToCircles(set);
       // packingStragegy(set, valueFunction, circles);
     });
@@ -253,7 +255,7 @@ export default function() {
     sets.forEach(function(k, v) {
       v.size = size(v.size);
     })
-    sets = sets.values();
+    // sets = sets.values();
 
     venn.sets(sets);
     return sets;

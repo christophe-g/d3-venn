@@ -1,6 +1,6 @@
 {
   "name": "d3-venn",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "a Venn Layout plugin for d3.js",
   "keywords": [
     "d3",
@@ -18,7 +18,7 @@
   "scripts": {
     "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-venn -n d3_venn -o build/d3-venn.js -- build/bundle.js && cat ./end.js >> build/d3-venn.js",
     "test": "faucet `find test -name '*-test.js'`",
-    "prepublish": "npm run test && uglifyjs build/d3-venn.js --drop_console true -c -m -o build/d3-venn.min.js && rm -f build/d3-venn.zip && zip -j build/d3-venn.zip -- LICENSE  README.md build/d3-venn.js build/d3-venn.min.js && cp build/*.js ~/DAV/apps/esmile/__master/data/lib/d3/"
+    "prepublish": "npm run test && uglifyjs build/d3-venn.js --drop_console true -c -m -o build/d3-venn.min.js && rm -f build/d3-venn.zip && zip -j build/d3-venn.zip -- LICENSE  README.md build/d3-venn.js build/d3-venn.min.js"
   },
   "devDependencies": {
     "faucet": "0.0",
