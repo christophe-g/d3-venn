@@ -26,7 +26,7 @@ function outOfCircles(point, circles) {
 // used to pack child nodes insiside inner circle of a venn set.
 function pack(layout) {
   // var valueFn = layout.value();
-  var packerConfig = layout.packerConfig();
+  var packingConfig = layout.packingConfig();
 
   layout.sets().forEach(function(k,set) {
     // function pack(set, valueFn) {
@@ -36,7 +36,7 @@ function pack(layout) {
       x = center.x - innerRadius,
       y = center.y - innerRadius;
 
-    applier(d3.layout.pack(), packerConfig)
+    applier(d3.layout.pack(), packingConfig)
       .size([innerRadius * 2, innerRadius * 2])
       .nodes({
         children: children
