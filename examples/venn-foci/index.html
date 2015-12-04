@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Venn Diagram - pack layout</title>
+    <!-- <script src="//d3js.org/d3.v3.min.js"></script> -->
+    <!-- <script src="https://raw.githubusercontent.com/christophe-g/vennLayout/master/vennLayout.js"></script> -->
+    <script type="text/javascript" src="../d3.js"></script>
+    <script type="text/javascript" src="../../build/d3-venn.js"></script>
+   <style>
+        #venn {
+            margin-left: 250px;
+            margin-top: -200px;
+        }
+
+    </style>
+</head>
+ 
+<body>
+    <form>
+        <div id="inputs">
+            <p>
+                <label for="dataLength">Number of Nodes</label>
+                <input type="number" min="10" step="10" max="600" name="dataLength" id="dataLength" value="" />
+            </p>
+            <p>
+                <label for="setLength">Number of Circles</label>
+                <input  min="2" max="8" type="number" name="setLength" id="setLength" value="" />
+            </p>
+             <p>
+                <label for="circleOpacity">opacity for Circle</label>
+                <input  min="0.1" max="1" step ="0.1"  type="range" name="circleOpacity" id="circleOpacity" value="" />
+            </p>
+            <p>
+                <label for="innerOpacity">opacity for inner Circle</label>
+                <input  min="0" max="1" step ="0.1" type="range" name="innerOpacity" id="innerOpacity" value="" />
+            </p>
+        </div>
+    </form>
+    <svg id="venn"></svg>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

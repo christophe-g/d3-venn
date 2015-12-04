@@ -11,8 +11,9 @@ It tries to be in line with [d3.layout approach and declaration](https://github.
 One possible use case of this layout is to display a set of labelled nodes on their respective set as in the figure below: 
  
 <div>
-<img src="https://www.e-smile.org/blog/resources/images/vennLayout.png" width="600">
+<img src="https://raw.githubusercontent.com/christophe-g/d3-venn/master/images/foci.png" width="600">
 </div>
+
 
 ## How does it work ?
 Venn sets are calculated on the basis of nodes `set` properties . 
@@ -46,6 +47,10 @@ By default, set area size are a count of nodes in the set.
 
 ## Examples
 - [simple example](http://bl.ocks.org/christophe-g/517461e67a2aae17dd10)
+<div>
+<img src="https://raw.githubusercontent.com/christophe-g/d3-venn/master/images/pack.png" width="300">
+</div>
+
 - [interactive example](http://bl.ocks.org/christophe-g/2a491630dcc716fcb270)
 - [with d3.layout force and foci ](http://bl.ocks.org/christophe-g/b6c3135cc492e9352797)
 - [interactive, with area size as log of number of nodes](http://bl.ocks.org/christophe-g/c41f09c1c2bc71f10a20)
