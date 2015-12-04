@@ -35,7 +35,7 @@ export default function() {
       value: valueFn,
     },
     size: [1, 1],
-    padding: 15,
+    padding: 0,
 
     // options from venn (https://github.com/benfred/venn.js)
     layoutFunction: vennLayout,
