@@ -8,7 +8,7 @@
  * @return {mixed} The value of the option or the component.
  */
 
-export default function getSet(option, component) {
+function getSet(option, component) {
   return function(_) {
     if (! arguments.length) {
       return this[option];
@@ -19,3 +19,22 @@ export default function getSet(option, component) {
     return component;
   };
 }
+
+function applier(component, options) {
+	for (var key in options) {
+        if(component[key] && (typeof component[key] == "function")) {
+            component[key](options[key]);
+        }
+    }
+    return component;
+}
+
+function binder(component, options) {
+	for (var key in options) {
+        if(!component[key]) {
+            component[key] = getSet(key, component).bind(options);
+        }
+    }
+}
+
+export {binder, applier};

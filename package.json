@@ -16,9 +16,9 @@
     "url": "https://github.com/christophe-g/d3-venn.git"
   },
   "scripts": {
-    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-venn -n d3_venn -o build/d3-venn.js -- build/bundle.js && node -e 'process.stdout.write (\"var d3 = d3||{}; d3.layout = d3.layout || {}; d3.layout.venn = this.d3_venn && this.d3_venn.venn; delete this.d3_venn;\")' >> build/d3-venn.js",
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-venn -n d3_venn -o build/d3-venn.js -- build/bundle.js && cat ./end.js >> build/d3-venn.js",
     "test": "faucet `find test -name '*-test.js'`",
-    "prepublish": "npm run test && uglifyjs build/d3-venn.js --drop_console true -c -m -o build/d3-venn.min.js && rm -f build/d3-venn.zip && zip -j build/d3-venn.zip -- LICENSE README.md build/d3-venn.js build/d3-venn.min.js"
+    "prepublish": "npm run test && uglifyjs build/d3-venn.js --drop_console true -c -m -o build/d3-venn.min.js && rm -f build/d3-venn.zip && zip -j build/d3-venn.zip -- LICENSE  README.md build/d3-venn.js build/d3-venn.min.js && cp build/*.js ~/DAV/apps/esmile/__master/data/lib/d3/"
   },
   "devDependencies": {
     "faucet": "0.0",
