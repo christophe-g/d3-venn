@@ -2,7 +2,9 @@
 lib for node packing algorithm
 */
 import {
-  SMALL
+  SMALL,
+  containedInCircles,
+  distance
 }
 from "../venn.js/src/circleintersection.js";
 import {
@@ -11,10 +13,11 @@ import {
 }
 from "./getSet.js";
 
+
 //return true when the point is out of all circles
 function outOfCircles(point, circles) {
   for (var i = 0; i < circles.length; ++i) {
-    if (venn.distance(point, circles[i]) < circles[i].radius + SMALL) {
+    if (distance(point, circles[i]) < circles[i].radius + SMALL) {
       return false;
     }
   }
@@ -63,7 +66,9 @@ function distribute(layout) {
       maxAttempt = 500,
       k,
       inCircles = [],
-      outCircles = [];
+      outCircles = [],
+      center = set.center,
+      innerRadius = set.innerRadius;
 
 
     for (k in circles) {
@@ -80,8 +85,8 @@ function distribute(layout) {
         candidate = null;
 
       if (i == 0) { // first node centered
-        n.x = textCentres[set.__key__].x;
-        n.y = textCentres[set.__key__].y;
+        n.x = center.x;
+        n.y = center.y;
         queue.push(n)
       } else {
         while (!candidate && (attempt < maxAttempt)) {
@@ -94,7 +99,7 @@ function distribute(layout) {
               y: s.y + r * Math.sin(a)
             };
           attempt++;
-          if (venn.containedInCircles(p, inCircles) && (outOfCircles(p, outCircles))) {
+          if (containedInCircles(p, inCircles) && (outOfCircles(p, outCircles))) {
             candidate = p;
             queue.push(p)
           }
@@ -103,14 +108,14 @@ function distribute(layout) {
         if (!candidate) {
           console.warn('NO CANDIDATE')
           candidate = {
-            x: textCentres[set.__key__].x,
-            y: textCentres[set.__key__].y
+            x: center.x,
+            y: center.y
           }
         }
         n.x = candidate.x;
         n.y = candidate.y;
 
-        nodes.push(n);
+        // nodes.push(n);
       }
     });
   })
@@ -158,7 +163,7 @@ function force(layout, data) {
     .on('tick', tick)
     
   var ender ;
-  if(ender = force.ender() {
+  if(ender = force.ender()) {
 		force.on('end', ender)
   }  
     
@@ -169,7 +174,7 @@ function force(layout, data) {
       d.y = d.y ? d.y * 1 : center.y;
     })
     var starter ;
-    if(starter = force.starter() {
+    if(starter = force.starter()) {
 			starter(layout)
     }
   }
