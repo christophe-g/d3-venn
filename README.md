@@ -50,7 +50,6 @@ By default, set area size are a count of nodes in the set.
 <div>
 <img src="https://raw.githubusercontent.com/christophe-g/d3-venn/master/images/pack.png" width="300">
 </div>
-
 - [interactive example](http://bl.ocks.org/christophe-g/2a491630dcc716fcb270)
 - [with d3.layout force and foci ](http://bl.ocks.org/christophe-g/b6c3135cc492e9352797)
 - [interactive, with area size as log of number of nodes](http://bl.ocks.org/christophe-g/c41f09c1c2bc71f10a20)

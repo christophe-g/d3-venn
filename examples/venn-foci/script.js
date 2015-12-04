@@ -195,6 +195,20 @@
       });
     circleContainer.exit().remove();
 
+    // need this so that nodes always on top
+    var circleContainer = svg.selectAll("g.venn-circle-container")
+      .data(layout.sets().values(), function(d) {
+        return d.__key__;
+      });
+
+    circleContainer.enter()
+      .append('g')
+      .attr("class", "venn-circle-container")
+      .attr('fill', function(d, i) {
+        return colors(i)
+      });
+    circleContainer.exit().remove();
+
     var points = circleContainer.selectAll("circle.node")
       .data(function(d) {
         return d.nodes
