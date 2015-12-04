@@ -190,11 +190,6 @@ For example when the packing strategy is set to `venn.force' we can apply config
 
 ```
 
-
-<a name="value" href="#value">#</a> venn.<b>value</b>([<i>value</i>])
-
-When <i>value</i> is specified, set the way node values is calculated. This function is passed to <i>packCircleFunction</i> when calulating node position and can be used to deal with different node size.
-
 <a name="size" href="#size">#</a> venn.<b>size</b>([<i>size</i>])
 
 If size is specified, sets the available layout size to the specified two-element array of numbers representing x and y. If size is not specified, returns the current size, which defaults to 1×1.
