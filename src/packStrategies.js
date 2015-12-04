@@ -127,8 +127,9 @@ function force(layout, data) {
     	padding : 3,
     	maxRadius : 8,
       collider : true,
-      ticker: null
-
+      ticker: null,
+      ender : null,
+      starter : null
     });
   }
 
@@ -156,12 +157,21 @@ function force(layout, data) {
     .on('start', init)
     .on('tick', tick)
     
+  var ender ;
+  if(ender = force.ender() {
+		force.on('end', ender)
+  }  
+    
   function init(e) {
     data.forEach(function(d) {
     	var center = sets.get(d.__setKey__).center;
       d.x = d.x ? d.x * 1 : center.x;
       d.y = d.y ? d.y * 1 : center.y;
     })
+    var starter ;
+    if(starter = force.starter() {
+			starter(layout)
+    }
   }
 
   function tick(e) {

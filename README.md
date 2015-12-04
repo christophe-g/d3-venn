@@ -219,6 +219,8 @@ In addition to the usual properties of the `d3.layout.force`, this stategy can b
  - `maxRadius` - maximum radius for nodes used by the collider (default to `8`).
  - `padding` - padding between nodes (default to `3`).
  - `ticker` - a function called on every force layout tick. 
+ - `starter` - a function called on `force.start` event. 
+ - `ender` - a function called on `force.end` event. 
 
 
 <a name="distribute" href="#distribute">#</a> venn.<b>distribute</b>(<i>venn</i>)
