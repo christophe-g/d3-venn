@@ -149,7 +149,7 @@ When <i>setAccessor</i> is specified, defines the way sets are accessed for node
 
 <a name="setsSize" href="#setsSize">#</a> venn.<b>setsSize</b>([<i>setsSize</i>])
 
-When <i>setSize</i> is specified, defines the way area size are modulated. By default, area set size are a count of the number of nodes they contain [exmple of layout using log of set area size](http://bl.ocks.org/christophe-g/c41f09c1c2bc71f10a20). 
+When <i>setSize</i> is specified, defines the way area size are modulated. By default, area set size are a count of the number of nodes they contain [example of layout using log of set area size](http://bl.ocks.org/christophe-g/c41f09c1c2bc71f10a20). 
 If not specified, this method return the currnet `venn.setsSize` function.
 
 <a name="packingStragegy" href="#packingStragegy">#</a> venn.<b>packingStragegy</b>([<i>packingStragegy</i>])
