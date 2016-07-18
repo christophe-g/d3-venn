@@ -32,7 +32,8 @@ var dataLength = 180,
         }
     });
 
-var l = d3.layout.venn().size([width, height]).value(x=>1),
+var l = d3.layout.venn().size([width, height]),
+// var l = d3.layout.venn().size([width, height]).valueFn(x=>1),
 
     ld = l.nodes(data);
 
@@ -41,7 +42,7 @@ var svg = d3.select('svg')
     .attr('height', height);
 
 var nodes = svg.selectAll("g")
-    .data(l.sets(), function(d) {
+    .data(l.sets().values(), function(d) {
         return d.__key__;
     });
 

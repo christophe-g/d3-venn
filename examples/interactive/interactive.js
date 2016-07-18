@@ -96,7 +96,7 @@
         }
 
         var vennArea = svg.selectAll("g.venn-area")
-            .data(layout.sets(), function(d) {
+            .data(layout.sets().values(), function(d) {
                 return d.__key__;
             });
 
