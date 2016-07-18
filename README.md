@@ -14,7 +14,7 @@ One possible use case of this layout is to display a set of labelled nodes on th
 <img src="https://raw.githubusercontent.com/christophe-g/d3-venn/master/images/foci.png" width="600">
 </div>
 
-An alternative and somehow more flexible approach is also available under (the d3-foci layout)[https://github.com/christophe-g/d3-foci]
+An alternative and somehow more flexible approach is also available under [the d3-foci layout](https://github.com/christophe-g/d3-foci)
 
 ## How does it work ?
 Venn sets are calculated on the basis of nodes `set` properties . 
